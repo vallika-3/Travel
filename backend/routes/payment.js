@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Dummy payment processing endpoint
+
 router.post('/payment', (req, res) => {
     const { userId, paymentMethod, amount } = req.body;
 
@@ -10,13 +10,13 @@ router.post('/payment', (req, res) => {
         return res.status(400).json({ message: "Payment method and amount are required." });
     }
 
-    // Simulate payment processing
+   
     setTimeout(() => {
-        // In a real-world scenario, payment gateway API integration would happen here.
+        
         res.status(200).json({
             message: `Payment of ₹${amount} via ${paymentMethod} processed successfully!`
         });
-    }, 2000); // Simulate payment processing delay
+    }, 2000); 
 });
 
 module.exports = router;

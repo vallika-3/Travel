@@ -5,8 +5,6 @@ const Wishlist = require("../models/Wishlist");
 const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");
 
-// POST /api/wishlist - Create wishlist item
-// Get all wishlist items for logged-in user
 router.get("/wishlist", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;

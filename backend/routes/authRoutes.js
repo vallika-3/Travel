@@ -5,14 +5,14 @@ require("dotenv").config();
 
 const router = express.Router();
 
-// Helper: Generate JWT Token
+
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: "365d",
   });
 };
 
-// ✅ REGISTER ROUTE
+//  REGISTER ROUTE
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    // Save new user (password will be hashed automatically via pre-save middleware)
+   
     const newUser = new User({ name, email, password });
     await newUser.save();
 
@@ -44,7 +44,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// ✅ LOGIN ROUTE
+//  LOGIN ROUTE
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;

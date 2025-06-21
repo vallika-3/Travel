@@ -1,9 +1,9 @@
-// backend/routes/deposit.js
+
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-// Deposit Route (Update saved amount)
+
 router.post('/deposit', async (req, res) => {
     const { userId, depositAmount } = req.body;
 
@@ -17,7 +17,7 @@ router.post('/deposit', async (req, res) => {
             return res.status(404).json({ message: "User not found." });
         }
 
-        // Update saved amount and check if they have reached the goal
+        
         user.savedAmount += depositAmount;
         await user.save();
 

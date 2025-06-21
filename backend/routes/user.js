@@ -12,7 +12,7 @@ router.get("/me", authMiddleware, async (req, res) => {
       .populate("trips")
       .populate("wishlist")
       .populate("bookings")
-      .select("-password"); // exclude password if any
+      .select("-password"); 
 
     if (!user) return res.status(404).json({ message: "User not found" });
 

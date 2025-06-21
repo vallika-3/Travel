@@ -5,6 +5,6 @@ const WishlistSchema = new mongoose.Schema({
   destination: String,
   startDate: Date,
   endDate: Date
-}, { collection: "wishlist" });  // ✅ Explicitly setting collection name
+}, { collection: "wishlist" });  
 
 module.exports = mongoose.model("Wishlist", WishlistSchema);

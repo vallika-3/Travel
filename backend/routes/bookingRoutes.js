@@ -5,8 +5,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// Create a new booking and add it to the user's bookings array
-// Get all bookings for logged-in user
+
 router.get("/booking", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;

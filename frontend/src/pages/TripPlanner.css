@@ -1,0 +1,87 @@
+.trip-planner-container {
+  padding: 40px;
+  background: #f9f9f9;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.trip-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.plan-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.day-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.day-card h2 {
+  margin-bottom: 10px;
+}
+
+.day-card ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.day-card li {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-icons svg {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.action-icons svg:hover {
+  color: #000;
+}
+
+.add-btn {
+  background: #4caf50;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.planner-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.save-btn,
+.export-btn {
+  background: #2d336b;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.save-btn:hover,
+.export-btn:hover {
+  background: #1f264f;
+}

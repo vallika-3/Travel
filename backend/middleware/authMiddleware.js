@@ -27,7 +27,7 @@ const authMiddleware = (req, res, next) => {
   } catch (err) {
     console.error("JWT Verification Error:", err.message);
 
-    // Specific error messages for easier debugging
+   
     if (err.name === "TokenExpiredError") {
       return res.status(401).json({ msg: "Token expired" });
     } else if (err.name === "JsonWebTokenError") {

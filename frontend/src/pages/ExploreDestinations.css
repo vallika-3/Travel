@@ -1,0 +1,147 @@
+:root {
+  --primary-color: #526d82;
+  --secondary-color: #dde6ed;
+  --text-color: #333;
+  --white: #fff;
+  --shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.explore-page {
+  padding: 40px 60px;
+  background-color: #f7f9fc;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+.explore-hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.explore-hero h1 {
+  color: var(--primary-color);
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.explore-hero p {
+  font-size: 18px;
+  color: #666;
+}
+
+.explore-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.explore-controls select {
+  padding: 10px 15px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  background-color: var(--white);
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+  box-shadow: var(--shadow);
+}
+
+.explore-controls select:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.explore-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.explore-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body h2 {
+  color: var(--primary-color);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.card-body p {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.meta-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-btn,
+.book-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 14px;
+}
+
+.view-btn:hover,
+.book-btn:hover {
+  background-color: #394867;
+}
+.explore-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(82, 109, 130, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.explore-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.card-body {
+  padding: 20px;
+  color: #fff;
+  backdrop-filter: blur(6px);
+}

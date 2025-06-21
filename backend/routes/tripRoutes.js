@@ -4,7 +4,7 @@ const User = require("../models/User");
 const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
-// Like/Unlike
+// Like
 router.post("/like/:id", async (req, res) => {
   const userId = req.body.userId;
   const trip = await Trip.findById(req.params.id);
@@ -50,12 +50,12 @@ router.get("/", authMiddleware, async (req, res) => {
 });
 // routes/tripRoutes.js
 router.get('/api/trips', async (req, res) => {
-  const data = await Trip.find(); // assuming a Trip model
+  const data = await Trip.find(); 
   res.json(data);
 });
 
 
-// ✅ Create a new trip
+//  Create a new trip
 router.post("/", authMiddleware, async (req, res) => {
   try {
     const { title, location, price, duration, description } = req.body;

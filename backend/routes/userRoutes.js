@@ -10,7 +10,6 @@ const { getUserData } = require("../controllers/userController");
 
 const authMiddleware = require("../middleware/authMiddleware");
 
-// GET /api/user/me — fetch user profile data (protected)
 
 
 router.get("/me", authMiddleware, getUserData);
