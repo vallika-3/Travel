@@ -1,7 +1,7 @@
-
 import React, { useEffect, useState } from "react";
-import "./RiderHub.css";
 import { useNavigate } from "react-router-dom";
+import api from "../api"; // ✅ Step 1: Import api
+import "./RiderHub.css";
 
 const campaigns = [
   {
@@ -10,7 +10,7 @@ const campaigns = [
     description: "Join fellow bikers on a 10-day expedition from Manali to Leh, through the most scenic mountain passes.",
     dates: "July 10 - July 20",
     route: "Manali → Sarchu → Leh → Pangong → Nubra → Manali",
-    image: "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGltYWxheWFzfGVufDB8fDB8fHwwhttps://source.unsplash.com/800x400/?himalayas,bike",
+    image: "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGltYWxheWFzfGVufDB8fDB8fHww",
   },
   {
     id: 2,
@@ -38,11 +38,11 @@ const RiderHub = () => {
   useEffect(() => {
     const fetchRiders = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/riders");
-        const data = await res.json();
-        setRiders(data.riders || []);
+        const res = await api.get("/api/riders"); // ✅ Step 2: Remove full URL
+        setRiders(res.data.riders || []);
         setLoading(false);
       } catch (err) {
+        console.error("Fetch error:", err);
         setError("Failed to load riders.");
         setLoading(false);
       }
@@ -53,22 +53,22 @@ const RiderHub = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5001/api/riders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(riderForm),
-      });
-      const data = await res.json();
+      // ✅ Post new rider
+      const res = await api.post("/api/riders", riderForm);
+      const data = res.data;
+
       if (data.success) {
         alert(`✅ Thank you for registering, ${riderForm.name}!`);
         setRiderForm({ name: "", email: "", location: "", expertise: "" });
-        const updatedRes = await fetch("http://localhost:5001/api/riders");
-        const updatedData = await updatedRes.json();
-        setRiders(updatedData.riders || []);
+
+        // ✅ Refresh rider list
+        const updatedRes = await api.get("/api/riders");
+        setRiders(updatedRes.data.riders || []);
       } else {
         alert(`❌ ${data.error}`);
       }
     } catch (err) {
+      console.error("Registration error:", err);
       alert(`❌ Registration failed.`);
     }
   };

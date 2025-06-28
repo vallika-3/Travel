@@ -33,6 +33,7 @@ const RiderProfile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const rider = mockRiders.find((r) => r.id === id);
+
   if (!rider) return <div className="rider-profile">Rider not found.</div>;
 
   return (

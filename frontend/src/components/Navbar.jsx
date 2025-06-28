@@ -36,10 +36,12 @@ const Navbar = () => {
 
         <div className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
           <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={closeMobileMenu}>Home</Link>
-          <Link to="/discover" className={location.pathname === '/discover' ? 'active' : ''} onClick={closeMobileMenu}>Discover</Link>
+         
 
           {isLoggedIn ? (
             <>
+              <Link to="/discover" className={location.pathname === '/discover' ? 'active' : ''} onClick={closeMobileMenu}>Discover</Link>
+
               <Link to="/reels" className={location.pathname === '/reels' ? 'active' : ''} onClick={closeMobileMenu}>Reels</Link>
               <Link to="/rewards" className={location.pathname === '/rewards' ? 'active' : ''} onClick={closeMobileMenu}>Rewards</Link>
               <Link to="/trip-planner" className={location.pathname === '/trip-planner' ? 'active' : ''} onClick={closeMobileMenu}>Trip Planner</Link>

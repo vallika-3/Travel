@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import api from '../api'; // ✅ Added this
 import './CampaignDetails.css';
 
 const CampaignDetails = () => {
@@ -16,8 +17,7 @@ const CampaignDetails = () => {
   useEffect(() => {
     const fetchCampaign = async () => {
       try {
-        const res = await fetch(`http://localhost:5001/api/campaigns/${id}`);
-        const data = await res.json();
+        const { data } = await api.get(`/api/campaigns/${id}`); // ✅ Changed here
         if (data.success) {
           setCampaign(data.campaign);
         } else {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ Add this
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const mockDestinations = [
@@ -31,7 +31,7 @@ const mockDestinations = [
   {
     id: 6,
     name: 'Rome',
-    image: 'https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cm9tZXxlbnwwfHwwfHx8MA%3D%3De',
+    image: 'https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cm9tZXxlbnwwfHwwfHx8MA%3D%3D',
   },
 ];
 
@@ -39,13 +39,12 @@ const Home = () => {
   const [modalImage, setModalImage] = useState(null);
   const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate(); // ✅ Initialize navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
       scrollToIndex((currentIndex + 1) % mockDestinations.length);
     }, 3000);
-
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -70,6 +69,15 @@ const Home = () => {
     scrollToIndex(newIndex);
   };
 
+  const handleDiscoverClick = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate('/discover');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <div className="hero-container">
       <div className="hero-text">
@@ -77,17 +85,15 @@ const Home = () => {
         <p>Explore hidden gems and popular spots worldwide.</p>
         <button
           className="cta-button"
-          onClick={() => navigate('/discover')} 
+          onClick={handleDiscoverClick}
         >
           Discover Destinations
         </button>
       </div>
-
       <div className="hero-slider-wrapper">
         <button className="slider-button prev" onClick={handlePrev}>
           &#10094;
         </button>
-
         <div className="hero-slider-horizontal" ref={sliderRef}>
           {mockDestinations.map((dest) => (
             <div
@@ -100,11 +106,9 @@ const Home = () => {
             </div>
           ))}
         </div>
-
         <button className="slider-button next" onClick={handleNext}>
           &#10095;
         </button>
-
         <div className="slider-dots">
           {mockDestinations.map((_, index) => (
             <span
@@ -115,7 +119,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       {modalImage && (
         <div className="modal" onClick={() => setModalImage(null)}>
           <img src={modalImage} alt="Enlarged" className="modal-image" />

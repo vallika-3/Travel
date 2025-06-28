@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PastTrips.css';
+import api from '../api';
 
 const PastTrips = () => {
   const [trips, setTrips] = useState([]);
@@ -8,17 +9,17 @@ const PastTrips = () => {
 
   useEffect(() => {
     const fetchTrips = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5001/api/trips', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await response.json();
-        setTrips(data);
-      } catch (err) {
-        console.error('Error fetching trips:', err);
-      }
-    };
+  try {
+    const token = localStorage.getItem('token');
+    const { data } = await api.get('/api/trips', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    setTrips(data);
+  } catch (err) {
+    console.error('Error fetching trips:', err);
+  }
+};
+
     fetchTrips();
   }, []);
 
@@ -31,34 +32,31 @@ const PastTrips = () => {
   };
 
   const submitReview = async (tripId) => {
-    const token = localStorage.getItem('token');
-    const comment = reviewContent[tripId];
-    if (!comment || comment.trim() === '') {
-      alert('Please enter a review');
-      return;
-    }
+  const token = localStorage.getItem('token');
+  const comment = reviewContent[tripId];
+  if (!comment || comment.trim() === '') {
+    alert('Please enter a review');
+    return;
+  }
 
-    try {
-      const res = await fetch(`http://localhost:5001/api/trips/review/${tripId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ comment, rating: 5 }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        alert('Review submitted');
-        setReviewContent((prev) => ({ ...prev, [tripId]: '' }));
-        setReviewsVisible((prev) => ({ ...prev, [tripId]: false }));
-      } else {
-        alert('Failed to submit review');
-      }
-    } catch (err) {
-      alert('Error submitting review');
+  try {
+    const { data } = await api.post(
+      `/api/trips/review/${tripId}`,
+      { comment, rating: 5 },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    if (data.success) {
+      alert('Review submitted');
+      setReviewContent((prev) => ({ ...prev, [tripId]: '' }));
+      setReviewsVisible((prev) => ({ ...prev, [tripId]: false }));
+    } else {
+      alert('Failed to submit review');
     }
-  };
+  } catch (err) {
+    alert('Error submitting review');
+  }
+};
 
   return (
     <div className="past-wrapper">

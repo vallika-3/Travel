@@ -45,7 +45,7 @@ const BookingPage = () => {
 
   return (
     <div className="booking-container">
-      <h1 className="booking-title">Book Your Trip to Rome</h1>
+      <h1 className="booking-title"></h1>
 
       <div className="booking-content">
         <div className="image-banner">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import api from "../api"; // ✅ Import your centralized axios instance
 import "./TripPlanner.css";
 
 const TripPlanner = () => {
@@ -17,7 +18,7 @@ const TripPlanner = () => {
   });
 
   const [daysCount, setDaysCount] = useState(0);
-  const [savedTrips, setSavedTrips] = useState([]); // New state for saved trips
+  const [savedTrips, setSavedTrips] = useState([]);
 
   // Compute trip duration
   useEffect(() => {
@@ -31,17 +32,16 @@ const TripPlanner = () => {
     }
   }, [plan.startDate, plan.endDate]);
 
-  // Load trips on mount
+  // Load saved trips on mount
   useEffect(() => {
     fetchTrips();
   }, []);
 
   const fetchTrips = async () => {
     try {
-      const res = await fetch("http://localhost:5001/api/trip-planner");
-      const data = await res.json();
-      if (data.success) {
-        setSavedTrips(data.trips);
+      const res = await api.get("/api/trip-planner"); // ✅ No base URL
+      if (res.data.success) {
+        setSavedTrips(res.data.trips);
       }
     } catch (err) {
       console.error("Failed to fetch trips:", err);
@@ -74,15 +74,10 @@ const TripPlanner = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5001/api/trip-planner", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tripType, ...plan })
-      });
-
-      const data = await response.json();
-      if (data.success) {
+      const res = await api.post("/api/trip-planner", { tripType, ...plan });
+      if (res.data.success) {
         alert(`✅ Trip to ${plan.destination} saved successfully!`);
+        // Reset form
         setPlan({
           destination: "",
           startDate: "",
@@ -96,15 +91,14 @@ const TripPlanner = () => {
           routePlan: ""
         });
         setTripType("solo");
-        fetchTrips(); // Refresh list after save
+        fetchTrips();
       } else {
-        alert(`❌ Error: ${data.error}`);
+        alert(`❌ Error: ${res.data.error}`);
       }
     } catch (err) {
-      alert(`❌ Request failed: ${err.message}`);
+      alert(`❌ Request failed: ${err.response?.data?.message || err.message}`);
     }
   };
-
   return (
     <div className="trip-wrapper">
       {/* LEFT FORM */}

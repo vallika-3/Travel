@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../api'; // ✅ Added this
 import './Discover.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -73,15 +74,15 @@ const Discover = () => {
 
   useEffect(() => {
     const fetchDestinations = async () => {
-      try {
-        const res = await fetch('http://localhost:5001/api/destinations');
-        const data = await res.json();
-        setDestinations(data);
-      } catch (error) {
-        console.error("Error fetching destinations:", error);
-        setDestinations([]);
-      }
-    };
+  try {
+    const { data } = await api.get('/api/destinations');
+    setDestinations(data);
+  } catch (error) {
+    console.error("Error fetching destinations:", error);
+    setDestinations([]);
+  }
+};
+
     fetchDestinations();
   }, []);
 

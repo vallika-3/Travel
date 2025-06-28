@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api"; // ✅ Use your centralized axios instance
 import './Signup.css';
 
 const Signup = () => {
@@ -14,10 +14,10 @@ const Signup = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // Set background only for signup page
+    // Set gradient background on mount
     document.body.style.background = "linear-gradient(to bottom right, #526d82, #7a8ba3)";
     return () => {
-      document.body.style.background = "#f7f9fc"; // Reset to default
+      document.body.style.background = "#f7f9fc";
     };
   }, []);
 
@@ -28,11 +28,12 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5001/api/auth/register", formData);
+      const res = await api.post("/api/auth/register", formData); // ✅ Use `api` without full URL
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("isLoggedIn", "true");
       setMessage("Signup successful! Redirecting...");
-      setTimeout(() => navigate("/"), 1500); // Redirect to home page
+      setTimeout(() => navigate("/"), 1500);
     } catch (err) {
       setMessage(err.response?.data?.message || "Something went wrong");
     }

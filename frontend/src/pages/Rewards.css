@@ -31,7 +31,6 @@ body {
   justify-content: center;
 }
 
-
 .header {
   width: 100%;
   text-align: center;
@@ -70,16 +69,14 @@ body {
   justify-content: center;
   gap: 15px;
   min-height: 70px;
-  flex: 1 1 25%;
+  flex: 1 1 30%;
   text-align: center;
   transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
-
 .card:hover {
   transform: translateY(-5px);
   box-shadow: var(--hover-shadow);
 }
-
 .card h3 {
   margin: 0;
   font-size: 1.2rem;
@@ -87,7 +84,6 @@ body {
   color: var(--text);
   font-weight: 600;
 }
-
 .card svg {
   font-size: 28px;
   color: var(--primary);
@@ -100,14 +96,12 @@ body {
   flex-wrap: wrap;
   align-items: stretch;
 }
-
 .summary-section .card {
-  flex-grow: 1;
+  flex: 1 1 30%;
   min-height: 140px;
   padding: 25px;
   flex-direction: column;
   justify-content: center;
-  box-shadow: var(--shadow);
 }
 
 .xp-bar {
@@ -137,6 +131,7 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 35px;
+  width: 100%;
 }
 
 .reel-upload h2,
@@ -164,7 +159,6 @@ body {
   box-sizing: border-box;
   transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
-
 .reel-upload input:focus,
 .controls input:focus,
 .controls select:focus {
@@ -234,11 +228,11 @@ button:active {
 .trips-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 20px;
   margin-top: 25px;
 }
 .trip-card {
-  flex: 1 1 45%;
+  flex: 1 1 30%;
   background: var(--accent-bg);
   border-radius: var(--radius);
   padding: 30px;
@@ -340,7 +334,6 @@ button:active {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
 @keyframes zoomIn {
   0% { transform: scale(0.8); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
@@ -383,13 +376,13 @@ button:active {
 .rewards-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 20px;
 }
 .reward-card {
   background: var(--accent-bg);
   border-radius: var(--radius);
   padding: 30px;
-  flex: 1 1 48%;
+  flex: 1 1 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -425,85 +418,18 @@ button:active {
   box-shadow: 0 2px 8px rgba(82, 109, 130, 0.2);
 }
 
+/* Responsive */
 @media (max-width: 900px) {
-  .left-column, .right-column {
-    flex: 1 1 100%;
-  }
-  .summary-section .card {
+  .summary-section .card,
+  .trips-grid .trip-card,
+  .rewards-grid .reward-card {
     flex: 1 1 48%;
   }
-  .trips-grid .trip-card {
-    flex: 1 1 100%;
-  }
+}
+@media (max-width: 600px) {
+  .summary-section .card,
+  .trips-grid .trip-card,
   .rewards-grid .reward-card {
     flex: 1 1 100%;
-  }
-  .rewards-container {
-    padding: 40px 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .rewards-container {
-    padding: 30px 15px;
-    gap: 20px;
-  }
-  .header h1 {
-    font-size: 2.5rem;
-  }
-  .header p {
-    font-size: 1rem;
-  }
-  .card {
-    padding: 15px 20px;
-    min-height: 60px;
-  }
-  .card h3 {
-    font-size: 1.1rem;
-  }
-  .card svg {
-    font-size: 24px;
-  }
-  .summary-section .card {
-    flex: 1 1 100%;
-  }
-  .reel-upload,
-  .saving-plan,
-  .lootbox,
-  .rewards,
-  .badges,
-  .trip-options {
-    padding: 25px;
-  }
-  .reel-upload input,
-  .controls input,
-  .controls select {
-    padding: 12px;
-    font-size: 1rem;
-  }
-  button {
-    padding: 12px 20px;
-    font-size: 1rem;
-  }
-  .modal-content {
-    padding: 35px 25px;
-  }
-  .modal-content h3 {
-    font-size: 1.5rem;
-  }
-  .modal-content p {
-    font-size: 1rem;
-  }
-  .modal-content .close {
-    font-size: 28px;
-    top: 10px;
-    right: 15px;
-  }
-  .badge {
-    padding: 10px 16px;
-    font-size: 0.95rem;
-  }
-  .reward-card {
-    padding: 25px;
   }
 }

@@ -10,38 +10,32 @@ import {
   FaMusic,
   FaTimes,
 } from 'react-icons/fa';
-
-const API_BASE = 'http://localhost:5001/api';
+import api from '../api';
 
 const ReelsPage = () => {
   const [reels, setReels] = useState([]);
 
   useEffect(() => {
-    // Fetch reels from the backend
-    fetch(`${API_BASE}/reels`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setReels(data);
+    const fetchReels = async () => {
+      try {
+        const res = await api.get('/api/reels');
+        if (Array.isArray(res.data)) {
+          setReels(res.data);
         } else {
-          console.warn('Fetched data is not an array:', data);
-          setReels([]); // Ensure reels is an array even if backend sends something else
+          console.warn('Fetched data is not an array:', res.data);
+          setReels([]);
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error('Error fetching reels:', err);
         setReels([]);
-      });
-  }, []); // Empty dependency array means this runs once on component mount
+      }
+    };
+
+    fetchReels();
+  }, []);
 
   return (
     <div className="reels-page">
-      {/* Conditionally render ReelCard only if reels is an array and has items */}
       {Array.isArray(reels) && reels.length > 0 ? (
         reels.map((reel) => (
           <ReelCard key={reel._id} reel={reel} />
@@ -56,20 +50,16 @@ const ReelsPage = () => {
 const ReelCard = ({ reel }) => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
-  // MOCK_USER_ID: In a real application, this would come from your authenticated user's ID
-  // For now, let's use a consistent mock ID for testing likes/comments.
-  const MOCK_USER_ID = 'mockUser123';
-
-  // Check if the current mock user has liked the reel initially
   const [liked, setLiked] = useState(
-    Array.isArray(reel.likedBy) && reel.likedBy.includes(MOCK_USER_ID)
+    Array.isArray(reel.likedBy) && reel.likedBy.includes('mockUser123')
   );
-  const [activePanel, setActivePanel] = useState(null); // 'comments' or 'options'
+  const [activePanel, setActivePanel] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [isLoadingComments, setIsLoadingComments] = useState(false);
 
-  // Auto-play video on component mount
+  const MOCK_USER_ID = 'mockUser123';
+
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
@@ -82,30 +72,17 @@ const ReelCard = ({ reel }) => {
   const toggleLike = async () => {
     try {
       console.log('Toggling like for reel:', reel._id, 'by user:', MOCK_USER_ID);
-      const res = await fetch(`${API_BASE}/reels/like`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // Send the mock user ID to the backend
-        body: JSON.stringify({ reelId: reel._id, userId: MOCK_USER_ID }),
-      });
+      const res = await api.post('/api/reels/like', { reelId: reel._id });
 
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-
-      const updatedReel = await res.json();
-      console.log('Updated reel after like:', updatedReel);
-
-      // Update the liked state based on the response from the backend
+      const updatedReel = res.data;
       setLiked(Array.isArray(updatedReel.likedBy) && updatedReel.likedBy.includes(MOCK_USER_ID));
     } catch (err) {
       console.error('Like error:', err);
-      alert('Failed to update like. Check console for details.');
+      alert('Failed to update like.');
     }
   };
 
   const handleShare = () => {
-    // In a real app, you might want to generate a specific reel URL
     navigator.clipboard.writeText(window.location.href);
     alert('Reel link copied to clipboard!');
   };
@@ -113,16 +90,12 @@ const ReelCard = ({ reel }) => {
   const openComments = async () => {
     setActivePanel('comments');
     setIsLoadingComments(true);
-    setComments([]); // Clear previous comments when opening
+    setComments([]);
 
     try {
       console.log('Fetching comments for reel:', reel._id);
-      const res = await fetch(`${API_BASE}/comments/${reel._id}`);
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      const data = await res.json();
-      console.log('Fetched comments:', data);
+      const res = await api.get(`/api/comments/${reel._id}`);
+      const data = res.data;
 
       if (Array.isArray(data)) {
         setComments(data);
@@ -132,8 +105,7 @@ const ReelCard = ({ reel }) => {
       }
     } catch (err) {
       console.error('Failed to fetch comments:', err);
-      setComments([]); // Ensure comments is an array on error
-      alert('Failed to load comments. Check console for details.');
+      alert('Failed to load comments.');
     } finally {
       setIsLoadingComments(false);
     }
@@ -143,13 +115,12 @@ const ReelCard = ({ reel }) => {
 
   const closePanel = () => {
     setActivePanel(null);
-    // Optionally clear comments/new comment when panel closes
     setComments([]);
     setNewComment('');
   };
 
   const postComment = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     const text = newComment.trim();
     if (!text) {
       alert('Comment cannot be empty!');
@@ -158,30 +129,21 @@ const ReelCard = ({ reel }) => {
 
     try {
       console.log('Posting comment:', { reelId: reel._id, user: MOCK_USER_ID, text });
-      const res = await fetch(`${API_BASE}/comments`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          reelId: reel._id,
-          user: MOCK_USER_ID, // Use the mock user ID for posting comments
-          text,
-        }),
+      const res = await api.post('/api/comments', {
+        reelId: reel._id,
+        user: MOCK_USER_ID,
+        text,
       });
 
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-
-      const savedComment = await res.json();
-      console.log('Comment posted:', savedComment);
-      // Add the newly posted comment to the top of the comments list
+      const savedComment = res.data;
       setComments((prev) => [savedComment, ...prev]);
-      setNewComment(''); // Clear the input field
+      setNewComment('');
     } catch (err) {
       console.error('Error posting comment:', err);
-      alert('Failed to post comment. Check console for details.');
+      alert('Failed to post comment.');
     }
   };
+
 
   return (
     <div className="reel-container">

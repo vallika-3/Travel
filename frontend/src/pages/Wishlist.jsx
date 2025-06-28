@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../api'; // ✅ Use centralized axios instance
 import './Wishlist.css';
 
 const Wishlist = () => {
@@ -13,14 +14,13 @@ const Wishlist = () => {
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const res = await fetch(`http://localhost:5001/api/wishlist/${userId}`, {
+        const res = await api.get(`/api/wishlist/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        const data = await res.json();
-        setWishlist(data.trips || []);
+        setWishlist(res.data.trips || []);
       } catch (err) {
         console.error("❌ Failed to fetch wishlist:", err);
       } finally {
@@ -30,17 +30,16 @@ const Wishlist = () => {
 
     if (userId && token) fetchWishlist();
     else setLoading(false);
-  }, []);
+  }, [userId, token]);
 
   const handleRemove = async (tripId) => {
     try {
-      await fetch(`http://localhost:5001/api/wishlist/${userId}/${tripId}`, {
-        method: 'DELETE',
+      await api.delete(`/api/wishlist/${userId}/${tripId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setWishlist(wishlist.filter((item) => item.tripId !== tripId));
+      setWishlist((prev) => prev.filter((item) => item.tripId !== tripId));
     } catch (err) {
       console.error("❌ Failed to remove from wishlist:", err);
     }
@@ -51,6 +50,7 @@ const Wishlist = () => {
   if (!userId || !token) {
     return <p>Please login to view your wishlist.</p>;
   }
+
 
   return (
     <div className="wishlist-wrapper">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './PlaceDetails.css';
+import api from '../api';
+
 import {
   FaStar,
   FaBus,
@@ -18,25 +20,23 @@ const PlaceDetails = () => {
 
   useEffect(() => {
     const fetchDestinationAndPackages = async () => {
-      try {
-        const destinationRes = await fetch(`http://localhost:5001/api/destinations/${id}`);
-        const destinationData = await destinationRes.json();
-        console.log("📍 Destination Name:", destinationData.name); // Debug log
-        setDestination(destinationData);
+  try {
+    const { data: destinationData } = await api.get(`/api/destinations/${id}`);
+    console.log("📍 Destination Name:", destinationData.name);
+    setDestination(destinationData);
 
-        // Clean destination name before sending to backend
-        const cleanName = destinationData.name.split(',')[0].trim();
-        console.log("🔍 Querying packages for:", cleanName);
+    const cleanName = destinationData.name.split(',')[0].trim();
+    console.log("🔍 Querying packages for:", cleanName);
 
-        const packagesRes = await fetch(`http://localhost:5001/api/packages/${cleanName}`);
-        const packagesData = await packagesRes.json();
-        console.log("📦 Fetched packages:", packagesData);
+    const { data: packagesData } = await api.get(`/api/packages/${cleanName}`);
+    console.log("📦 Fetched packages:", packagesData);
 
-        setPackages(packagesData);
-      } catch (err) {
-        console.error("❌ Failed to load destination or packages:", err);
-      }
-    };
+    setPackages(packagesData);
+  } catch (err) {
+    console.error("❌ Failed to load destination or packages:", err);
+  }
+};
+
 
     fetchDestinationAndPackages();
   }, [id]);
@@ -114,7 +114,7 @@ const PlaceDetails = () => {
                     <button className="view-details-btn" onClick={() => setSelectedPackage(pkg)}>View Details</button>
                     <button
                       className="book-now-btn"
-                      onClick={() => navigate(`/mybookings`)}
+                      onClick={() => navigate(`/booking`)}
                     >
                       Book Now
                     </button>
