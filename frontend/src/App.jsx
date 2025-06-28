@@ -22,7 +22,7 @@ import Wishlist from './pages/Wishlist';
 import PastTrips from './pages/PastTrips';
 import Settings from './pages/Settings';
 import Dashboard from './pages/Dashboard';
-import DestinationDetails from './pages/DestinationDetails'; 
+import DestinationDetails from './pages/DestinationDetails';
 
 
 
@@ -33,7 +33,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        
+
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -42,9 +42,9 @@ const App = () => {
         <Route path="/discover" element={<Discover />} />
         <Route path="/explore" element={<ExploreDestinations />} />
         <Route path="/place-details/:id" element={<PlaceDetails />} />
-        <Route path="/destination/:id" element={<DestinationDetails />} /> 
+        <Route path="/destination/:id" element={<DestinationDetails />} />
         <Route path="/booking" element={<BookingPage />} />
-        <Route path="/my-bookings" element={<MyBookings />} />
+        <Route path="/mybookings" element={<MyBookings />} />
         <Route path="/trip-planner" element={<TripPlanner />} />
         <Route path="/riders-hub" element={<RiderHub />} />
         <Route path="/rider/:id" element={<RiderProfile />} />
@@ -53,13 +53,15 @@ const App = () => {
         <Route path="/pasttrips" element={<PastTrips />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/mybookings" element={<MyBookings />} />
-
-
+        
        
+     
+
+
+
         <Route path="/profile" element={<Profile />} />
 
-        
+
         <Route
           path="*"
           element={

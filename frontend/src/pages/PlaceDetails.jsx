@@ -45,11 +45,11 @@ const PlaceDetails = () => {
 
   const sortedPackages = Array.isArray(packages)
     ? [...packages].sort((a, b) => {
-        if (sortOption === 'price') return a.price - b.price;
-        if (sortOption === 'rating') return b.rating - a.rating;
-        if (sortOption === 'duration') return a.duration - b.duration;
-        return 0;
-      })
+      if (sortOption === 'price') return a.price - b.price;
+      if (sortOption === 'rating') return b.rating - a.rating;
+      if (sortOption === 'duration') return a.duration - b.duration;
+      return 0;
+    })
     : [];
 
   return (
@@ -94,7 +94,14 @@ const PlaceDetails = () => {
               {sortedPackages.map((pkg) => (
                 <div key={pkg._id} className="package-card">
                   <div className="package-header">
-                    <img src={pkg.logo} alt={pkg.provider} className="provider-logo" />
+                    <img
+  src={pkg.logo || "https://randomuser.me/api/portraits/men/45.jpg"}
+  alt={pkg.provider || "Provider"}
+  className="provider-logo"
+/>
+
+
+
                     <div>
                       <h3>{pkg.provider}</h3>
                       <span className="rating"><FaStar /> {pkg.rating}</span>
@@ -105,7 +112,13 @@ const PlaceDetails = () => {
 
                   <div className="package-actions">
                     <button className="view-details-btn" onClick={() => setSelectedPackage(pkg)}>View Details</button>
-                    <button className="book-now-btn" onClick={() => navigate(`/my-bookings`)}>Book Now</button>
+                    <button
+                      className="book-now-btn"
+                      onClick={() => navigate(`/mybookings`)}
+                    >
+                      Book Now
+                    </button>
+
                   </div>
                 </div>
               ))}

@@ -8,7 +8,7 @@ const bookingsMock = [
     date: '15 June - 18 June',
     status: 'upcoming',
     price: 25000,
-    image: 'https://source.unsplash.com/400x300/?bali',
+    image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFsaXxlbnwwfHwwfHx8MA%3D%3D',
     invoiceLink: '#',
   },
   {
@@ -17,7 +17,7 @@ const bookingsMock = [
     date: '10 May - 14 May',
     status: 'completed',
     price: 42000,
-    image: 'https://source.unsplash.com/400x300/?paris',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGFyaXN8ZW58MHx8MHx8fDA%3D',
     invoiceLink: '#',
   },
 ];

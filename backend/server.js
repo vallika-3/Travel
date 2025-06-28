@@ -13,8 +13,8 @@ app.use(cors());
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const protectedRoutes = require("./routes/protectedRoutes");
-const tripRoutes = require("./routes/tripRoutes"); // Existing trip routes
-const tripPlannerRoutes = require("./routes/tripPlannerRoutes"); // NEW Trip Planner routes
+const tripRoutes = require("./routes/tripRoutes");
+const tripPlannerRoutes = require("./routes/tripPlannerRoutes");
 const wishlistRoutes = require("./routes/wishlistRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const destinationRoutes = require("./routes/destinationRoutes");
@@ -26,15 +26,15 @@ const rewardRoutes = require("./routes/rewardsRoutes");
 const riderRoutes = require("./routes/riderRoutes");
 const campaignRoutes = require("./routes/campaignRoutes");
 
-
 // Mount Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/protected", protectedRoutes);
 app.use("/api/trips", tripRoutes);
-app.use("/api/trip-planner", tripPlannerRoutes); // ✅ NEW
+app.use("/api/trip-planner", tripPlannerRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/bookings", bookingRoutes);
+
 app.use("/api/destinations", destinationRoutes);
 app.use("/api/reels", reelRoutes);
 app.use("/api/comments", commentRoutes);

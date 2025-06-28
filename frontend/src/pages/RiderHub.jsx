@@ -96,77 +96,80 @@ const RiderHub = () => {
               {loading && <p>Loading riders...</p>}
               {error && <p>{error}</p>}
               <div className="rider-preview-list">
-                {riders.slice(0, 3).map((r) => (
-                  <div key={r._id} className="rider-mini-card">
-                    <img
-                      src={`https://randomuser.me/api/portraits/lego/${Math.floor(
-                        Math.random() * 10
-                      )}.jpg`}
-                      alt={r.name}
-                    />
-                    <div>
-                      <strong>{r.name}</strong>
-                      <p>{r.location}</p>
-                      <p className="mini-rating">⭐ 4.8</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+  {riders.slice(0, 3).map((r) => (
+    <div key={r._id} className="rider-mini-card">
+      <img
+        src={
+          r.logo ||
+          `https://randomuser.me/api/portraits/lego/${Math.floor(
+            Math.random() * 10
+          )}.jpg`
+        }
+        alt={r.provider || "Provider"}
+        className="provider-logo"
+      />
+      <strong>{r.name}</strong>
+      <p>{r.location}</p>
+      <p className="mini-rating">⭐ 4.8</p>
+    </div>
+  ))}
+</div>
 
-              <div className="campaign-actions">
-                <button
-                  onClick={() => navigate(`/campaign/${campaign.id}`, { state: campaign })}
-                >
-                  View Campaign
-                </button>
-                <button className="join-btn" onClick={() => alert("Redirect to Join Flow")}>
-                  Join Campaign
-                </button>
-              </div>
+
+            <div className="campaign-actions">
+              <button
+                onClick={() => navigate(`/campaign/${campaign.id}`, { state: campaign })}
+              >
+                View Campaign
+              </button>
+              <button className="join-btn" onClick={() => alert("Redirect to Join Flow")}>
+                Join Campaign
+              </button>
             </div>
           </div>
+          </div>
         ))}
-      </div>
-
-      {/* Rider Registration */}
-      <div className="rider-register-form">
-        <h2>🚀 Become a Rider</h2>
-        <p>Join the RiderHub network and participate in global campaigns.</p>
-        <form onSubmit={handleRegister}>
-          <input
-            type="text"
-            placeholder="Full Name"
-            required
-            value={riderForm.name}
-            onChange={(e) => setRiderForm({ ...riderForm, name: e.target.value })}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            required
-            value={riderForm.email}
-            onChange={(e) => setRiderForm({ ...riderForm, email: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Location"
-            required
-            value={riderForm.location}
-            onChange={(e) => setRiderForm({ ...riderForm, location: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Area of Expertise (e.g. Off-road, Photography)"
-            required
-            value={riderForm.expertise}
-            onChange={(e) => setRiderForm({ ...riderForm, expertise: e.target.value })}
-          />
-          <button type="submit" className="join-btn">
-            Register Now
-          </button>
-        </form>
-      </div>
     </div>
+
+      {/* Rider Registration */ }
+  <div className="rider-register-form">
+    <h2>🚀 Become a Rider</h2>
+    <p>Join the RiderHub network and participate in global campaigns.</p>
+    <form onSubmit={handleRegister}>
+      <input
+        type="text"
+        placeholder="Full Name"
+        required
+        value={riderForm.name}
+        onChange={(e) => setRiderForm({ ...riderForm, name: e.target.value })}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        required
+        value={riderForm.email}
+        onChange={(e) => setRiderForm({ ...riderForm, email: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Location"
+        required
+        value={riderForm.location}
+        onChange={(e) => setRiderForm({ ...riderForm, location: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Area of Expertise (e.g. Off-road, Photography)"
+        required
+        value={riderForm.expertise}
+        onChange={(e) => setRiderForm({ ...riderForm, expertise: e.target.value })}
+      />
+      <button type="submit" className="join-btn">
+        Register Now
+      </button>
+    </form>
+  </div>
+    </div >
   );
 
 

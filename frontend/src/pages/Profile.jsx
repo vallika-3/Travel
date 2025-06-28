@@ -35,7 +35,7 @@ const Profile = () => {
         {/* Left Panel */}
         <div className="left-panel">
           <img
-            src={user.avatar || "https://i.pravatar.cc/150"} // Default avatar
+            src={user.avatar || "https://i.pravatar.cc/150"}
             alt="Profile"
             className="profile-avatar"
           />
@@ -72,10 +72,12 @@ const Profile = () => {
             {trips.length > 0 ? (
               trips.map((trip) => (
                 <div className="carousel-card glassy" key={trip._id}>
-                  <img src={trip.image || "https://via.placeholder.com/200x150"} alt={trip.title} />
+                  <img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJvbWV8ZW58MHx8MHx8fDA%3D" alt="" />
                   <div className="trip-overlay">
                     <h4>{trip.title}</h4>
-                    <button onClick={() => navigate(`/booking/${trip._id}`)}>Revisit</button>
+                    <button onClick={() => navigate(`/place-details/${trip._id}`)}>
+                      Revisit
+                    </button>
                   </div>
                 </div>
               ))
