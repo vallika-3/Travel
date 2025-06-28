@@ -77,10 +77,11 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 - npm start
 
 🌐 Live Demo
-Frontend: https://travel-frontend-oug2vvupm-vallika-3s-projects.vercel.app
-Backend API: https://travel-backend-7hf8.onrender.com
+- Frontend: https://travel-frontend-oug2vvupm-vallika-3s-projects.vercel.app
+- Backend API: https://travel-backend-7hf8.onrender.com
 
 👤 Author
-Tirumalla Vallika Sai Sree
-LinkedIn • GitHub
+- Tirumalla Vallika Sai Sree
+- LinkedIn :https://www.linkedin.com/in/vallika-sree-180716259/
+- GitHub :https://github.com/vallika-3
 
