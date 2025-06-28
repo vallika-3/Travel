@@ -93,7 +93,7 @@
   transform: translateY(-50%);
   color: white;
   border: none;
-  background-color: transparent; /* Explicitly set to transparent */
+  background-color: transparent; 
   padding: 10px;
   font-size: 36px;
   cursor: pointer;
@@ -105,7 +105,7 @@
 .hero-arrow:hover {
   color: var(--primary);
   transform: translateY(-50%) scale(1.2);
-  background-color: transparent; /* Ensure transparent on hover */
+  background-color: transparent; 
 }
 
 .hero-arrow-left {
@@ -588,7 +588,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent; /* Changed to transparent */
+  background: transparent; 
   color: var(--primary);
   border: none;
   padding: 12px;
@@ -596,14 +596,14 @@
   cursor: pointer;
   z-index: 20;
   border-radius: 50%;
-  box-shadow: none; /* Removed the box-shadow for a truly no-background look */
+  box-shadow: none; 
   transition: background 0.25s ease, color 0.25s ease;
   user-select: none;
 }
 
 .arrow:hover {
-  background: transparent; /* Ensure transparent on hover as well */
-  color: #394e63; /* Slightly darker on hover for visibility */
+  background: transparent;
+  color: #394e63; 
 }
 
 .arrow.left {

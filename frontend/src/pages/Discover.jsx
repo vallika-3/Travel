@@ -30,12 +30,33 @@ const CATEGORIES = [
 ];
 
 const HERO_CAROUSEL_IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1586359716568-3e1907e4cf9f?w=900&auto=format', alt: 'Majestic Mountains' },
-  { src: 'https://source.unsplash.com/1600x900/?beach,sunset', alt: 'Serene Beach Sunset' },
-  { src: 'https://source.unsplash.com/1600x900/?city,skyline', alt: 'Vibrant City Night' },
-  { src: 'https://source.unsplash.com/1600x900/?forest,waterfall', alt: 'Lush Forest Waterfall' },
-  { src: 'https://source.unsplash.com/1600x900/?desert,oasis', alt: 'Starry Desert Oasis' },
-];
+  {
+    src: "https://images.unsplash.com/photo-1564420179789-ede909db4882?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhcmlzJTIwbmlnaHR8ZW58MHx8MHx8fDA%3D",
+    alt: "Paris City Night"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZGl2ZXN8ZW58MHx8MHx8fDA%3D",
+    alt: "Maldives Tropical Beach"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG5ldyUyMHlvcmt8ZW58MHx8MHx8fDA%3D",
+    alt: "New York Skyline"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "Tokyo Cityscape"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1521292270410-a8c4d716d518?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3dpc3MlMjBhbHBzfGVufDB8fDB8fHww",
+    alt: "Swiss Alps Mountains"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cm9tZXxlbnwwfHwwfHx8MA%3D%3De",
+    alt: "Rome Historic Landmarks"
+  }
+]
+
+
 
 const Discover = () => {
   const [destinations, setDestinations] = useState([]);

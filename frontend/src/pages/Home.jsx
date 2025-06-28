@@ -6,32 +6,32 @@ const mockDestinations = [
   {
     id: 1,
     name: 'Paris',
-    image: 'https://source.unsplash.com/300x400/?paris,travel',
+    image: 'https://images.unsplash.com/photo-1564420179789-ede909db4882?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhcmlzJTIwbmlnaHR8ZW58MHx8MHx8fDA%3D',
   },
   {
     id: 2,
     name: 'Maldives',
-    image: 'https://source.unsplash.com/300x400/?maldives,beach',
+    image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZGl2ZXN8ZW58MHx8MHx8fDA%3D',
   },
   {
     id: 3,
     name: 'New York',
-    image: 'https://source.unsplash.com/300x400/?newyork,city',
+    image: 'https://images.unsplash.com/photo-1518391846015-55a9cc003b25?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG5ldyUyMHlvcmt8ZW58MHx8MHx8fDA%3D',
   },
   {
     id: 4,
     name: 'Tokyo',
-    image: 'https://source.unsplash.com/300x400/?tokyo,japan',
+    image: 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 5,
     name: 'Swiss Alps',
-    image: 'https://source.unsplash.com/300x400/?switzerland,mountains',
+    image: 'https://images.unsplash.com/photo-1521292270410-a8c4d716d518?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3dpc3MlMjBhbHBzfGVufDB8fDB8fHww',
   },
   {
     id: 6,
     name: 'Rome',
-    image: 'https://source.unsplash.com/300x400/?rome,italy',
+    image: 'https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cm9tZXxlbnwwfHwwfHx8MA%3D%3De',
   },
 ];
 
@@ -77,7 +77,7 @@ const Home = () => {
         <p>Explore hidden gems and popular spots worldwide.</p>
         <button
           className="cta-button"
-          onClick={() => navigate('/explore')} // ✅ Navigate to ExploreDestinations
+          onClick={() => navigate('/discover')} 
         >
           Discover Destinations
         </button>

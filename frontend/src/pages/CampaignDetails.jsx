@@ -57,7 +57,7 @@ const CampaignDetails = () => {
   return (
     <div className="campaign-details-container">
       <div className="campaign-hero">
-        <img src={campaign.image} alt={campaign.title} />
+        <img src='https://images.unsplash.com/photo-1607836046730-3317bd58a31b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGltYWxheWFzfGVufDB8fDB8fHwwhttps://source.unsplash.com/800x400/?himalayas,bike' />
         <div className="overlay-text">
           <h1>{campaign.title}</h1>
           <p>{campaign.dates}</p>
@@ -124,10 +124,10 @@ const CampaignDetails = () => {
           <div className="gallery-scroll-wrapper">
             <div className="gallery-track">
               {[
-                "https://source.unsplash.com/400x250/?mountains,ride",
-                "https://source.unsplash.com/400x250/?bikers,landscape",
-                "https://source.unsplash.com/400x250/?camping,india",
-                "https://source.unsplash.com/400x250/?sunset,bike",
+                "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGltYWxheWFzfGVufDB8fDB8fHwwhttps://source.unsplash.com/800x400/?himalayas,bike",
+                "https://images.unsplash.com/photo-1612387843849-bc3fe8cc9183?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmlrZXJzfGVufDB8fDB8fHww",
+                "https://images.unsplash.com/photo-1624923686627-514dd5e57bae?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dGVudHxlbnwwfHwwfHx8MA%3D%3D",
+                "https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c3Vuc2V0fGVufDB8fDB8fHww",
               ].map((src, idx) => (
                 <div className="gallery-card" key={idx}>
                   <img src={src} alt={`slide-${idx}`} />

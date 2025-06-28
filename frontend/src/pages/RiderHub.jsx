@@ -10,7 +10,7 @@ const campaigns = [
     description: "Join fellow bikers on a 10-day expedition from Manali to Leh, through the most scenic mountain passes.",
     dates: "July 10 - July 20",
     route: "Manali → Sarchu → Leh → Pangong → Nubra → Manali",
-    image: "https://source.unsplash.com/800x400/?himalayas,bike",
+    image: "https://images.unsplash.com/photo-1607836046730-3317bd58a31b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGltYWxheWFzfGVufDB8fDB8fHwwhttps://source.unsplash.com/800x400/?himalayas,bike",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const campaigns = [
     description: "Explore serene beaches and temples on this coastal trip from Chennai to Kanyakumari.",
     dates: "August 2 - August 9",
     route: "Chennai → Pondicherry → Rameswaram → Kanyakumari",
-    image: "https://source.unsplash.com/800x400/?coastline,roadtrip",
+    image: "https://images.unsplash.com/photo-1446038202205-1c96430dbdab?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y29hc3RsaW5lfGVufDB8fDB8fHww",
   },
 ];
 
