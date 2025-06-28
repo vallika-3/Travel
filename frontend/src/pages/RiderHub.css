@@ -1,0 +1,637 @@
+/* Base Container */
+.riderhub-campaign-container {
+  padding: 60px 6%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #1f2937;
+  scroll-behavior: smooth;
+}
+
+/* Title */
+.campaign-title {
+  font-size: 2.6rem;
+  text-align: center;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.campaign-subtitle {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #6b7280;
+  max-width: 750px;
+  margin: 0 auto 50px auto;
+  line-height: 1.7;
+}
+
+/* Campaign Card Container */
+.campaign-card {
+  /* Increased flex-basis for wider cards */
+  flex: 0 0 380px; /* Adjusted from 320px to 380px */
+  max-width: 580px;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.campaign-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.12);
+}
+
+/* Image */
+.campaign-image {
+  width: 100%;
+  
+  height: 250px; 
+  object-fit: cover;
+  border-radius: 24px 24px 0 0;
+}
+
+/* Campaign Details */
+.campaign-info {
+  padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.campaign-info h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.campaign-dates {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #526d82;
+  margin-bottom: 16px;
+}
+
+.campaign-info p {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+/* Riders */
+.rider-preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.rider-mini-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 250px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.rider-mini-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.rider-mini-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rider-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.rider-details strong {
+  font-size: 0.95rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.rider-details p {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.mini-rating {
+  font-size: 0.8rem;
+  color: #f59e0b;
+  font-weight: 600;
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+/* Buttons */
+.campaign-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.campaign-actions button {
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  flex-grow: 1;
+  min-width: 120px;
+}
+
+.learn-more-btn {
+  background: transparent;
+  border: 1.5px solid #526d82;
+  color: #526d82;
+}
+
+.learn-more-btn:hover {
+  background-color: #526d82;
+  color: white;
+  border-color: #526d82;
+  transform: translateY(-2px);
+}
+
+.join-btn {
+  background-color: #526d82;
+  color: white;
+  box-shadow: 0 4px 15px rgba(82, 109, 130, 0.3);
+}
+
+.join-btn:hover {
+  background-color: #3e5467;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(62, 84, 103, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .campaign-title {
+    font-size: 2.2rem;
+  }
+  .campaign-subtitle {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+  .campaign-card {
+    
+    max-width: unset;
+    
+    flex: 0 0 350px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .riderhub-campaign-container {
+    padding: 40px 4%;
+  }
+  .rider-preview-list {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .rider-mini-card {
+    width: 100%;
+    min-width: unset;
+  }
+  .campaign-title {
+    font-size: 1.8rem;
+  }
+  .campaign-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+  .campaign-info {
+    padding: 24px;
+  }
+  .campaign-actions button {
+    font-size: 0.85rem;
+    padding: 10px 18px;
+  }
+  
+  .campaign-card {
+    flex: 0 0 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .riderhub-campaign-container {
+    padding: 30px 3%;
+  }
+  .campaign-title {
+    font-size: 1.6rem;
+  }
+  .campaign-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+  }
+  .campaign-image {
+   
+    height: 200px;
+  }
+  .campaign-info h2 {
+    font-size: 1.3rem;
+  }
+  .campaign-info p {
+    font-size: 0.9rem;
+  }
+  .campaign-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .campaign-card {
+    flex: 0 0 90%; 
+  }
+}
+
+.campaign-cards-flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 32px;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-bottom: 50px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.campaign-cards-flex-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.campaign-cards-flex-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.campaign-cards-flex-container::-webkit-scrollbar-thumb {
+  background: rgba(82, 109, 130, 0.6);
+  border-radius: 4px;
+}
+
+.campaign-cards-flex-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(82, 109, 130, 0.8);
+}
+
+.campaign-cards-flex-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(82, 109, 130, 0.6) rgba(0, 0, 0, 0.05);
+}
+.riderhub-main-container {
+  padding: 60px 40px;
+  background: linear-gradient(to right, #f1f5f9, #e0e7ef);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+.riderhub-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.riderhub-header h1 {
+  font-size: 2.6rem;
+  color: #1f2937;
+}
+
+.riderhub-header p {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.register-btn {
+  padding: 12px 24px;
+  background: #526d82;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: #3b4f66;
+}
+
+/* Leaderboard */
+.leaderboard-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  color: #1f2937;
+  text-align: center;
+}
+
+.leaderboard {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.leaderboard-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  padding: 20px;
+  width: 260px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.rank {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #526d82;
+}
+
+/* Register Modal */
+.register-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(30, 30, 30, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(6px);
+}
+
+.register-modal {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  padding: 36px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 520px;
+  position: relative;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.15);
+}
+
+.register-modal h2 {
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+.register-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.register-modal input,
+.register-modal textarea {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+.register-modal button {
+  background: #526d82;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.register-modal button:hover {
+  background: #3a4b63;
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+}
+/* --- Campaign Flex Container --- */
+.campaign-cards-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 40px;
+}
+
+/* --- Campaign Card --- */
+.campaign-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(82, 109, 130, 0.08);
+  overflow: hidden;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.campaign-card:hover {
+  transform: translateY(-5px);
+}
+
+/* --- Campaign Image --- */
+.campaign-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+/* --- Campaign Info Section --- */
+.campaign-info {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #1f2937;
+}
+
+.campaign-info h2 {
+  font-size: 1.4rem;
+  color: #2d336b;
+}
+
+.campaign-dates {
+  color: #526d82;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* --- Rider Preview Cards --- */
+.rider-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.rider-mini-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rider-mini-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.rider-mini-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.mini-rating {
+  font-weight: 600;
+  color: #2d336b;
+}
+
+/* --- Campaign Buttons --- */
+.campaign-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.campaign-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #526d82;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.campaign-actions button:hover {
+  background-color: #3b5162;
+}
+
+/* --- Rider Registration Form --- */
+.rider-register-form {
+  margin-top: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 30px rgba(82, 109, 130, 0.1);
+  backdrop-filter: blur(12px);
+  text-align: center;
+}
+
+.rider-register-form h2 {
+  color: #2d336b;
+  margin-bottom: 10px;
+}
+
+.rider-register-form p {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+.rider-register-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rider-register-form input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.8);
+  outline: none;
+}
+
+.rider-register-form input:focus {
+  border-color: #2d336b;
+}
+
+.rider-register-form .join-btn {
+  background-color: #526d82;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.rider-register-form .join-btn:hover {
+  background-color: #3b5162;
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+  .campaign-cards-flex-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .campaign-card {
+    max-width: 100%;
+  }
+}

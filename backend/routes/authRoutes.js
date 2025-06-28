@@ -5,14 +5,13 @@ require("dotenv").config();
 
 const router = express.Router();
 
-
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: "365d",
   });
 };
 
-//  REGISTER ROUTE
+// REGISTER ROUTE
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -27,7 +26,6 @@ router.post("/register", async (req, res) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
-   
     const newUser = new User({ name, email, password });
     await newUser.save();
 
@@ -36,7 +34,7 @@ router.post("/register", async (req, res) => {
     res.status(201).json({
       message: "User registered successfully",
       token,
-      user: { id: newUser._id, name: newUser.name, email: newUser.email },
+      user: { _id: newUser._id, name: newUser.name, email: newUser.email }, // Changed 'id' to '_id'
     });
   } catch (error) {
     console.error("Registration Error:", error.message);
@@ -44,7 +42,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//  LOGIN ROUTE
+// LOGIN ROUTE
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -71,7 +69,7 @@ router.post("/login", async (req, res) => {
     res.status(200).json({
       message: "Login successful",
       token,
-      user: { id: user._id, name: user.name, email: user.email },
+      user: { _id: user._id, name: user.name, email: user.email }, // Changed 'id' to '_id'
     });
   } catch (error) {
     console.error("Login Error:", error.message);

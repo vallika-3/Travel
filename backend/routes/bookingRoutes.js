@@ -1,34 +1,26 @@
 const express = require("express");
-const Booking = require("../models/Booking");
-const User = require("../models/User");
-const authMiddleware = require("../middleware/authMiddleware");
-
+const Booking = require("../models/bookingModel");
 const router = express.Router();
 
-
-router.get("/booking", authMiddleware, async (req, res) => {
+// Book a package
+router.post("/", async (req, res) => {
+  const { userId, packageId, selectedDate } = req.body;
   try {
-    const userId = req.user.id;
-    const bookings = await Booking.find({ userId });
-    res.status(200).json(bookings);
+    const booking = new Booking({ userId, packageId, selectedDate });
+    await booking.save();
+    res.status(201).json(booking);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(400).json({ message: err.message });
   }
 });
 
-router.post("/booking", authMiddleware, async (req, res) => {
+// Get all bookings for a user
+router.get("/:userId", async (req, res) => {
   try {
-    const { destination, startDate, endDate } = req.body;
-    const userId = req.user.id; // ✅ Authenticated user ID
-
-    const newBooking = new Booking({ userId, destination, startDate, endDate });
-    await newBooking.save();
-
-    await User.findByIdAndUpdate(userId, { $push: { bookings: newBooking._id } });
-
-    res.status(201).json(newBooking);
+    const bookings = await Booking.find({ userId: req.params.userId }).populate("packageId");
+    res.json(bookings);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: err.message });
   }
 });
 

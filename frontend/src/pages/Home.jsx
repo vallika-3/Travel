@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Add this
 import './Home.css';
 
 const mockDestinations = [
@@ -38,6 +39,7 @@ const Home = () => {
   const [modalImage, setModalImage] = useState(null);
   const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate(); // ✅ Initialize navigation
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -49,7 +51,7 @@ const Home = () => {
 
   const scrollToIndex = (index) => {
     if (sliderRef.current) {
-      const cardWidth = sliderRef.current.children[0].offsetWidth + 16; // 16px gap
+      const cardWidth = sliderRef.current.children[0].offsetWidth + 16;
       sliderRef.current.scrollTo({
         left: index * cardWidth,
         behavior: 'smooth',
@@ -73,7 +75,12 @@ const Home = () => {
       <div className="hero-text">
         <h1>Find Your Next Adventure</h1>
         <p>Explore hidden gems and popular spots worldwide.</p>
-        <button className="cta-button">Discover Destinations</button>
+        <button
+          className="cta-button"
+          onClick={() => navigate('/explore')} // ✅ Navigate to ExploreDestinations
+        >
+          Discover Destinations
+        </button>
       </div>
 
       <div className="hero-slider-wrapper">
@@ -98,7 +105,6 @@ const Home = () => {
           &#10095;
         </button>
 
-        {/* Dots */}
         <div className="slider-dots">
           {mockDestinations.map((_, index) => (
             <span
@@ -110,7 +116,6 @@ const Home = () => {
         </div>
       </div>
 
-     
       {modalImage && (
         <div className="modal" onClick={() => setModalImage(null)}>
           <img src={modalImage} alt="Enlarged" className="modal-image" />

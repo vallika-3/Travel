@@ -1,38 +1,70 @@
+:root {
+  --primary: #526d82;
+  --text-dark: #1f2937;
+  --text-light: #ffffff;
+  --bg-light: #f7f9fc;
+  --bg-dark: #282c34;
+  --accent: #61dafb;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  padding: 20px;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--bg-dark);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--text-light);
+  padding: 40px 20px;
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--accent);
+  text-decoration: none;
+  transition: 0.3s ease;
 }
 
-@keyframes App-logo-spin {
+.App-link:hover {
+  text-decoration: underline;
+  color: #4bb7e7;
+}
+
+/* Optional: Fade-in for pages */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+    opacity: 0;
+    transform: translateY(10px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

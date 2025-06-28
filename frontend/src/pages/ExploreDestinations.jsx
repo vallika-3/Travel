@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Add this
 import './ExploreDestinations.css';
 
 const destinations = [
@@ -13,6 +14,8 @@ const ExploreDestinations = () => {
   const [price, setPrice] = useState('All');
   const [duration, setDuration] = useState('All');
   const [sortBy, setSortBy] = useState('None');
+
+  const navigate = useNavigate(); // ✅ Hook to navigate
 
   const filterDestinations = () => {
     let filtered = [...destinations];
@@ -82,8 +85,14 @@ const ExploreDestinations = () => {
                 <span>{dest.days} Days</span>
               </div>
               <div className="card-buttons">
-                <button className="view-btn">View Details</button>
-                <button className="book-btn">Book Now</button>
+                <button
+                  className="view-btn"
+                  onClick={() => navigate(`/place-details/${dest.id}`)} // ✅ Redirect
+                >
+                  View Details
+                </button>
+                <button className="book-btn" onClick={() => navigate(`/my-bookings`)}>
+                 Book Now</button>
               </div>
             </div>
           </div>

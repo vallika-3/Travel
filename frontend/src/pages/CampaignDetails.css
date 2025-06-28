@@ -1,0 +1,312 @@
+/* Global Container */
+.campaign-details-container {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f0f4f8, #dbe6f1);
+  min-height: 100vh;
+  color: #1f2937;
+}
+
+/* Hero Section */
+.campaign-hero {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.campaign-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.overlay-text h1 {
+  font-size: 2.8rem;
+  margin: 0;
+}
+
+.overlay-text .countdown {
+  font-size: 1.1rem;
+  margin-top: 6px;
+}
+
+/* Glassmorphic Body */
+.campaign-body {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Sections */
+.campaign-summary, .campaign-route, .riders-section {
+  margin-bottom: 30px;
+}
+
+.campaign-summary h2,
+.campaign-route h3,
+.riders-section h3 {
+  font-size: 1.4rem;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.campaign-summary p,
+.campaign-route p {
+  color: #4b5563;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Rider Slider */
+.rider-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+}
+
+/* Rider Cards */
+.rider-card-glass {
+  flex: 0 0 220px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  scroll-snap-align: center;
+  color: #1f2937;
+}
+
+.rider-card-glass img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+  border: 2px solid #fff;
+}
+
+.rider-info h4 {
+  margin: 5px 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.rider-info p {
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin: 2px 0;
+}
+
+.rating {
+  color: #f59e0b;
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+.campaign-cta {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.join-btn, .back-btn, .close-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #526d82;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.join-btn:hover,
+.back-btn:hover,
+.close-btn:hover {
+  background-color: #3b5162;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.join-modal {
+  max-width: 400px;
+  width: 90%;
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  color: #1f2937;
+}
+
+.join-modal h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.join-modal input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+/* Map Section */
+.map-section {
+  margin-top: 40px;
+}
+
+.map-container iframe {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Gallery Section */
+.gallery-section {
+  margin: 40px 0;
+}
+
+.gallery-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.gallery-slider img {
+  flex: 0 0 auto;
+  width: 280px;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  scroll-snap-align: start;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.gallery-slider img:hover {
+  transform: scale(1.05);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.testimonial-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.testimonial-card {
+  max-width: 320px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-style: italic;
+  color: #1f2937;
+}
+
+.testimonial-card span {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #526d82;
+}
+.gallery-section {
+  margin: 60px 0;
+}
+
+.gallery-scroll-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-track {
+  display: flex;
+  gap: 20px;
+  animation: scrollGallery 25s linear infinite;
+  width: max-content;
+}
+
+.gallery-track:hover {
+  animation-play-state: paused;
+}
+
+.gallery-card {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-card:hover {
+  transform: scale(1.05);
+}
+
+/* Auto-scroll animation */
+@keyframes scrollGallery {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

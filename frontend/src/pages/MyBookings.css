@@ -1,26 +1,46 @@
+:root {
+  --primary-color: #526d82;
+  --dark-color: #3b5162;
+  --background-color: #f0f4f8;
+  --card-bg: #ffffff;
+  --modal-bg: rgba(0, 0, 0, 0.5);
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
 .my-bookings-container {
   padding: 40px 60px;
   background: linear-gradient(to right, #f0f4f8, #dbe6f1);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--dark-color);
+  min-height: 100vh;
 }
 
 h2 {
   font-size: 36px;
-  color: #526d82;
-  margin-bottom: 20px;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  text-align: center;
 }
 
 .bookings-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
+  gap: 28px;
 }
 
+/* Booking Card */
 .booking-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
   padding: 20px;
   text-align: center;
+  transition: transform 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.booking-card:hover {
+  transform: translateY(-5px);
 }
 
 .booking-card img {
@@ -28,62 +48,131 @@ h2 {
   height: 180px;
   border-radius: 12px;
   object-fit: cover;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
+/* Booking Actions */
 .booking-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 14px;
   justify-content: center;
 }
 
 .booking-actions button {
-  background-color: #526d82;
+  background-color: var(--primary-color);
   color: white;
-  padding: 8px 14px;
+  padding: 10px 18px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .booking-actions button:hover {
-  background-color: #3b5162;
+  background-color: var(--dark-color);
+  transform: translateY(-2px);
 }
 
+/* Modal Styling */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: var(--modal-bg);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
   background: white;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 16px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  animation: scaleUp 0.3s ease;
 }
 
 .modal-content h3 {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+  color: var(--primary-color);
+}
+
+.modal-content p {
+  margin-bottom: 12px;
+  font-size: 16px;
 }
 
 .modal-content textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
+  border-radius: 8px;
   resize: none;
-  margin-bottom: 12px;
-  border-radius: 6px;
+  font-size: 15px;
   border: 1px solid #ccc;
+  margin-bottom: 16px;
+}
+
+.modal-content select {
+  padding: 8px;
+  border-radius: 6px;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.modal-content button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 18px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: var(--dark-color);
+}
+
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: var(--modal-bg);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .my-bookings-container {
+    padding: 30px 20px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
 }

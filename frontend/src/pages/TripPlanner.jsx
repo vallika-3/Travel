@@ -1,98 +1,331 @@
-
-
-import React, { useState } from 'react';
-import './TripPlanner.css';
-import { FaEdit, FaTrash, FaPlus, FaDownload, FaSave } from 'react-icons/fa';
-import jsPDF from 'jspdf';
+import React, { useState, useEffect } from "react";
+import "./TripPlanner.css";
 
 const TripPlanner = () => {
-  const [plan, setPlan] = useState([
-    {
-      day: 'Day 1',
-      activities: ['Arrival at Bali Airport', 'Check-in at hotel', 'Beach Sunset Dinner'],
-    },
-    {
-      day: 'Day 2',
-      activities: ['Visit Ubud Monkey Forest', 'Tegallalang Rice Terrace', 'Traditional Dance Show'],
-    },
-  ]);
+  const [tripType, setTripType] = useState("solo");
+  const [plan, setPlan] = useState({
+    destination: "",
+    startDate: "",
+    endDate: "",
+    transport: "Flight",
+    travelers: 1,
+    notes: "",
+    groupMembers: [{ name: "", email: "" }],
+    bikeType: "",
+    campaignName: "",
+    routePlan: ""
+  });
 
-  const handleAddActivity = (index) => {
-    const newActivity = prompt('Enter activity:');
-    if (newActivity) {
-      const updatedPlan = [...plan];
-      updatedPlan[index].activities.push(newActivity);
-      setPlan(updatedPlan);
+  const [daysCount, setDaysCount] = useState(0);
+  const [savedTrips, setSavedTrips] = useState([]); // New state for saved trips
+
+  // Compute trip duration
+  useEffect(() => {
+    if (plan.startDate && plan.endDate) {
+      const start = new Date(plan.startDate);
+      const end = new Date(plan.endDate);
+      const diff = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+      setDaysCount(diff + 1);
+    } else {
+      setDaysCount(0);
+    }
+  }, [plan.startDate, plan.endDate]);
+
+  // Load trips on mount
+  useEffect(() => {
+    fetchTrips();
+  }, []);
+
+  const fetchTrips = async () => {
+    try {
+      const res = await fetch("http://localhost:5001/api/trip-planner");
+      const data = await res.json();
+      if (data.success) {
+        setSavedTrips(data.trips);
+      }
+    } catch (err) {
+      console.error("Failed to fetch trips:", err);
     }
   };
 
-  const handleEditActivity = (dayIndex, activityIndex) => {
-    const updated = prompt('Update activity:', plan[dayIndex].activities[activityIndex]);
-    if (updated) {
-      const updatedPlan = [...plan];
-      updatedPlan[dayIndex].activities[activityIndex] = updated;
-      setPlan(updatedPlan);
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPlan({ ...plan, [name]: value });
   };
 
-  const handleDeleteActivity = (dayIndex, activityIndex) => {
-    const updatedPlan = [...plan];
-    updatedPlan[dayIndex].activities.splice(activityIndex, 1);
-    setPlan(updatedPlan);
+  const handleGroupMemberChange = (index, field, value) => {
+    const updated = [...plan.groupMembers];
+    updated[index][field] = value;
+    setPlan({ ...plan, groupMembers: updated });
   };
 
-  const exportPDF = () => {
-    const doc = new jsPDF();
-    doc.setFontSize(18);
-    doc.text('Trip Plan', 20, 20);
-    let y = 30;
+  const addGroupMember = () => {
+    setPlan({
+      ...plan,
+      groupMembers: [...plan.groupMembers, { name: "", email: "" }]
+    });
+  };
 
-    plan.forEach((day) => {
-      doc.setFontSize(14);
-      doc.text(day.day, 20, y);
-      y += 10;
+  const saveToLocal = () => {
+    localStorage.setItem("tripDraft", JSON.stringify({ tripType, ...plan }));
+    alert("💾 Trip saved locally!");
+  };
 
-      day.activities.forEach((activity) => {
-        doc.setFontSize(12);
-        doc.text(`- ${activity}`, 30, y);
-        y += 8;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5001/api/trip-planner", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tripType, ...plan })
       });
 
-      y += 5;
-    });
-
-    doc.save('trip-plan.pdf');
+      const data = await response.json();
+      if (data.success) {
+        alert(`✅ Trip to ${plan.destination} saved successfully!`);
+        setPlan({
+          destination: "",
+          startDate: "",
+          endDate: "",
+          transport: "Flight",
+          travelers: 1,
+          notes: "",
+          groupMembers: [{ name: "", email: "" }],
+          bikeType: "",
+          campaignName: "",
+          routePlan: ""
+        });
+        setTripType("solo");
+        fetchTrips(); // Refresh list after save
+      } else {
+        alert(`❌ Error: ${data.error}`);
+      }
+    } catch (err) {
+      alert(`❌ Request failed: ${err.message}`);
+    }
   };
 
   return (
-    <div className="trip-planner-container">
-      <h1 className="trip-title"> Plan Your Trip</h1>
+    <div className="trip-wrapper">
+      {/* LEFT FORM */}
+      <div className="trip-form glass">
+        <h2>✨ Ultimate Trip Planner</h2>
+        <form onSubmit={handleSubmit}>
+          {/* Your form as before */}
+          {/* ... */}
+          {/* (No changes needed in the form markup) */}
+          {/* ... */}
+          <label>Trip Type</label>
+          <select value={tripType} onChange={(e) => setTripType(e.target.value)}>
+            <option value="solo">Solo</option>
+            <option value="group">Group</option>
+            <option value="biker">Biker Campaign</option>
+            <option value="family">Family</option>
+            <option value="corporate">Corporate</option>
+          </select>
+          <label>Destination</label>
+          <input
+            type="text"
+            name="destination"
+            placeholder="e.g., Manali, Bali..."
+            value={plan.destination}
+            onChange={handleChange}
+            required
+          />
+          <div className="row">
+            <div>
+              <label>Start Date</label>
+              <input
+                type="date"
+                name="startDate"
+                value={plan.startDate}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>End Date</label>
+              <input
+                type="date"
+                name="endDate"
+                value={plan.endDate}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <label>Mode of Travel</label>
+          <select
+            name="transport"
+            value={plan.transport}
+            onChange={handleChange}
+          >
+            <option>Flight</option>
+            <option>Train</option>
+            <option>Road</option>
+            <option>Bike</option>
+          </select>
 
-      <div className="plan-timeline">
-        {plan.map((day, dayIndex) => (
-          <div className="day-card" key={dayIndex}>
-            <h2>{day.day}</h2>
-            <ul>
-              {day.activities.map((activity, index) => (
-                <li key={index}>
-                  {activity}
-                  <span className="action-icons">
-                    <FaEdit onClick={() => handleEditActivity(dayIndex, index)} />
-                    <FaTrash onClick={() => handleDeleteActivity(dayIndex, index)} />
-                  </span>
-                </li>
+          {tripType === "group" && (
+            <>
+              <h4>👥 Group Members</h4>
+              {plan.groupMembers.map((member, idx) => (
+                <div className="row" key={idx}>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    value={member.name}
+                    onChange={(e) =>
+                      handleGroupMemberChange(idx, "name", e.target.value)
+                    }
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={member.email}
+                    onChange={(e) =>
+                      handleGroupMemberChange(idx, "email", e.target.value)
+                    }
+                    required
+                  />
+                </div>
               ))}
-            </ul>
-            <button className="add-btn" onClick={() => handleAddActivity(dayIndex)}>
-              <FaPlus /> Add Activity
+              <button
+                type="button"
+                className="add-btn"
+                onClick={addGroupMember}
+              >
+                + Add Member
+              </button>
+            </>
+          )}
+
+          {tripType === "biker" && (
+            <>
+              <label>Campaign Name</label>
+              <input
+                type="text"
+                name="campaignName"
+                value={plan.campaignName}
+                onChange={handleChange}
+              />
+              <label>Bike Type</label>
+              <input
+                type="text"
+                name="bikeType"
+                value={plan.bikeType}
+                onChange={handleChange}
+              />
+              <label>Route Plan</label>
+              <textarea
+                name="routePlan"
+                rows="2"
+                value={plan.routePlan}
+                onChange={handleChange}
+              />
+            </>
+          )}
+
+          <label>Notes</label>
+          <textarea
+            name="notes"
+            rows="3"
+            placeholder="Any custom plans?"
+            value={plan.notes}
+            onChange={handleChange}
+          />
+
+          <div className="row space-between">
+            <button type="submit" className="submit-btn">
+              📩 Save Trip
+            </button>
+            <button
+              type="button"
+              onClick={saveToLocal}
+              className="add-btn"
+            >
+              💾 Save as Draft
             </button>
           </div>
-        ))}
+        </form>
       </div>
 
-      <div className="planner-actions">
-        <button className="save-btn"><FaSave /> Save Plan</button>
-        <button className="export-btn" onClick={exportPDF}><FaDownload /> Export PDF</button>
+      {/* RIGHT PREVIEW */}
+      <div className="trip-preview glass">
+        <div
+          className="preview-header"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e)"
+          }}
+        >
+          <div className="overlay">
+            <h3>{plan.destination || "Your Destination"}</h3>
+            {daysCount > 0 && (
+              <p>
+                {daysCount} day{daysCount > 1 ? "s" : ""} trip
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="preview-body">
+          <p>
+            <strong>Type:</strong> {tripType}
+          </p>
+          <p>
+            <strong>Dates:</strong> {plan.startDate || "—"} →{" "}
+            {plan.endDate || "—"}
+          </p>
+          <p>
+            <strong>Mode:</strong> {plan.transport}
+          </p>
+          {tripType === "group" && (
+            <>
+              <p>
+                <strong>Group Size:</strong> {plan.groupMembers.length}
+              </p>
+              <div className="member-list">
+                {plan.groupMembers.map((member, index) => (
+                  <div key={index} className="member-item">
+                    <span>👤 {member.name || "Unnamed"}</span>
+                    <span>📧 {member.email || "No email"}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+          {tripType === "biker" && (
+            <>
+              <p>
+                <strong>Campaign:</strong> {plan.campaignName}
+              </p>
+              <p>
+                <strong>Bike:</strong> {plan.bikeType}
+              </p>
+              <p>
+                <strong>Route:</strong> {plan.routePlan || "—"}
+              </p>
+            </>
+          )}
+          <p>
+            <strong>Notes:</strong> {plan.notes || "None"}
+          </p>
+        </div>
+
+        <hr />
+        <h4>🌟 Saved Trips</h4>
+        {savedTrips.length === 0 ? (
+          <p>No trips saved yet.</p>
+        ) : (
+          savedTrips.map((trip) => (
+            <div key={trip._id} className="saved-trip">
+              <h5>{trip.destination}</h5>
+              <p>{trip.startDate?.slice(0,10)} → {trip.endDate?.slice(0,10)}</p>
+              <p>Type: {trip.tripType}</p>
+              <p>Mode: {trip.transport}</p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

@@ -1,87 +1,178 @@
-.trip-planner-container {
-  padding: 40px;
-  background: #f9f9f9;
-  min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
+:root {
+  --primary: #526d82;
+  --glass-bg: rgba(255, 255, 255, 0.2);
 }
 
-.trip-title {
-  font-size: 28px;
-  font-weight: bold;
+body {
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.trip-wrapper {
+  display: flex;
+  padding: 40px;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trip-form, .trip-preview {
+  flex: 1;
+  min-width: 340px;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+h2 {
+  color: var(--primary);
   margin-bottom: 20px;
 }
 
-.plan-timeline {
+form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
-.day-card {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+label {
+  font-weight: 600;
+  color: var(--primary);
 }
 
-.day-card h2 {
-  margin-bottom: 10px;
+input, select, textarea {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: 0.2s ease;
 }
 
-.day-card ul {
-  padding-left: 0;
-  list-style-type: none;
+input:focus, textarea:focus {
+  border-color: var(--primary);
+  outline: none;
 }
 
-.day-card li {
-  margin-bottom: 8px;
+textarea {
+  resize: vertical;
+}
+
+.row {
   display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.row input {
+  flex: 1;
+}
+
+.space-between {
   justify-content: space-between;
   align-items: center;
 }
 
-.action-icons svg {
-  margin-left: 10px;
-  cursor: pointer;
-  color: #555;
-  transition: color 0.2s;
-}
-
-.action-icons svg:hover {
-  color: #000;
-}
-
 .add-btn {
-  background: #4caf50;
-  color: #fff;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  margin-top: 10px;
+  background: transparent;
+  border: 1px dashed var(--primary);
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: var(--primary);
+  font-size: 14px;
   cursor: pointer;
 }
 
-.planner-actions {
-  margin-top: 30px;
-  display: flex;
-  gap: 20px;
-}
-
-.save-btn,
-.export-btn {
-  background: #2d336b;
+.submit-btn {
+  background: var(--primary);
   color: white;
-  padding: 10px 16px;
+  padding: 12px 18px;
   border: none;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 10px;
+  font-size: 15px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  transition: 0.3s;
 }
 
-.save-btn:hover,
-.export-btn:hover {
-  background: #1f264f;
+.submit-btn:hover {
+  background-color: #3b4f6b;
+}
+
+/* Preview */
+.trip-preview {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-header {
+  height: 180px;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.4);
+  height: 100%;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.preview-body {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.8;
+}
+.member-list {
+  margin-top: 10px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.member-item {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background-color: rgba(82, 109, 130, 0.08);
+  color: #333;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+/* Saved Trips List Styling */
+.saved-trip {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.saved-trip h5 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #1b1a1a;
+}
+
+.saved-trip p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+  color: #232222;
 }

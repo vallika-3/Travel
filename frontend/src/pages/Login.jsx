@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import './Login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    document.body.style.background = "linear-gradient(to bottom right, #526d82, #7a8ba3)";
+    return () => {
+      document.body.style.background = "#f7f9fc";
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,40 +27,49 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:5001/api/auth/login", formData);
-      console.log(res.data);
+      const { user, token } = res.data;
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      if (user && user._id && token) {
+        localStorage.setItem("userId", user._id);
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("isLoggedIn", "true");
 
-      setMessage("Login successful! Redirecting...");
-     
+        setMessage("Login successful! Redirecting...");
+        setTimeout(() => navigate("/"), 1000);
+      } else {
+        setMessage("Login failed: Invalid user data received from server.");
+      }
     } catch (err) {
-      console.error(err.response?.data?.message || err.message);
-      setMessage(err.response?.data?.message || "Something went wrong");
+      setMessage(err.response?.data?.message || "Something went wrong during login.");
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Login</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="login-container">
+      <div className="login-card">
+        <h2>Welcome Back</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        {message && <p className="login-message">{message}</p>}
+      </div>
     </div>
   );
 };

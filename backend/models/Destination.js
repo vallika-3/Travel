@@ -1,21 +1,16 @@
 const mongoose = require("mongoose");
 
-const reviewSchema = new mongoose.Schema({
-  rating: Number,
-  comment: String,
-  date: { type: Date, default: Date.now }, 
-});
-
 const destinationSchema = new mongoose.Schema({
-  name: String,
-  image: String,
-  description: String,
-  type: String, 
-  coordinates: {
-    lat: Number,
-    lng: Number,
-  },
-  reviews: [reviewSchema],
-});
+  name: { type: String, required: true },
+  location: { type: String, required: true },
+  price: { type: Number, required: true },
+  days: { type: Number, required: true }, // ✅ Added this line
+  image: { type: String },
+  rating: { type: Number },
+  liked: { type: Boolean, default: false },
+  trending: { type: Boolean, default: false },
+  category: { type: String },
+}, { timestamps: true });
 
-module.exports = mongoose.model("Destination", destinationSchema);
+const Destination = mongoose.model("Destination", destinationSchema);
+module.exports = Destination;

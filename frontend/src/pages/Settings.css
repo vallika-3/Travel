@@ -1,0 +1,171 @@
+:root {
+  --primary: #526d82;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --text-dark: #2c3e50;
+  --bg-light: #f3f7f8;
+  --bg-dark: #1c1f2b;
+  --text-light: #ffffff;
+}
+
+body {
+  background: linear-gradient(135deg, var(--bg-light), #dbe6f1);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-dark);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background: linear-gradient(135deg, var(--bg-dark), #2e3646);
+  color: var(--text-light);
+}
+
+.settings-wrapper {
+  padding: 40px 60px;
+}
+
+.settings-title {
+  text-align: center;
+  font-size: 36px;
+  color: var(--primary);
+  margin-bottom: 40px;
+}
+
+.settings-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  font-size: 14px;
+  background: #fff;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #2e3646;
+  color: var(--text-light);
+  border-color: #444;
+}
+
+.image-upload input[type="file"] {
+  margin-top: 10px;
+}
+
+.preview-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 10px;
+  border-radius: 12px;
+}
+
+.toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.switch-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+}
+
+.switch-label input {
+  opacity: 0;
+  position: absolute;
+}
+
+.switch-custom {
+  width: 42px;
+  height: 22px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.switch-custom::after {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.switch-label input:checked + .switch-custom {
+  background: #526d82;
+}
+
+.switch-label input:checked + .switch-custom::after {
+  transform: translateX(20px);
+}
+
+.save-btn {
+  grid-column: span 2;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background: #526d82;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-self: center;
+}
+
+.save-btn:hover {
+  background: #3d5169;
+}
+
+@media (max-width: 768px) {
+  .settings-form {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-wrapper {
+    padding: 25px;
+  }
+
+  .settings-title {
+    font-size: 28px;
+  }
+
+  .save-btn {
+    width: 100%;
+  }
+}

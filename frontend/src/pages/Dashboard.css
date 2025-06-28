@@ -1,0 +1,238 @@
+:root {
+  --primary: #526d82;
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --text-dark: #2d2d2d;
+  --shadow: rgba(0, 0, 0, 0.12);
+  --blur-amount: blur(14px);
+  --border-radius: 20px;
+  --glass-border: rgba(255, 255, 255, 0.35);
+}
+
+body {
+  background: linear-gradient(to right, #f0f4f8, #dbe6f1);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.dashboard-container {
+  padding: 40px 60px;
+}
+
+.dashboard-title {
+  font-size: 38px;
+  margin-bottom: 30px;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-grid {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.left-column {
+  flex: 1;
+  min-width: 300px;
+  max-width: 360px;
+  padding: 25px;
+  border-radius: var(--border-radius);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-amount);
+  box-shadow: 0 10px 25px var(--shadow);
+  border: 1px solid var(--glass-border);
+  transition: 0.3s ease all;
+}
+
+.right-column {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.profile-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 4px solid var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section h2 {
+  font-size: 22px;
+  color: var(--primary);
+  margin: 10px 0 5px;
+}
+
+.quick-actions h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 4px;
+}
+
+.quick-actions button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 10px rgba(82, 109, 130, 0.2);
+}
+
+.quick-actions button:hover {
+  background: #3a4e6a;
+  transform: translateY(-2px);
+}
+
+.section h2 {
+  color: var(--primary);
+  margin-bottom: 16px;
+  font-size: 24px;
+  border-bottom: 2px solid rgba(82, 109, 130, 0.2);
+  padding-bottom: 6px;
+}
+
+.card-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-amount);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  width: 270px;
+  min-height: 380px;
+  box-shadow: 0 8px 24px var(--shadow);
+  transition: 0.3s ease all;
+  border: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.card-info h4 {
+  font-size: 17px;
+  color: var(--primary);
+  margin: 0 0 8px;
+}
+
+.card-info p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.card-info button {
+  padding: 8px 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: 0.3s ease;
+}
+
+.card-info button:hover {
+  background: #3a4e6a;
+}
+
+.trip-card .trip-meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 13px;
+  color: #444;
+}
+
+.progress-container {
+  height: 8px;
+  width: 100%;
+  background-color: rgba(82, 109, 130, 0.15);
+  border-radius: 10px;
+  margin: 10px 0 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #526d82;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.trip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.trip-actions button {
+  flex: 1 1 120px;
+  padding: 10px;
+  border: none;
+  background-color: #526d82;
+  color: white;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.trip-actions button:hover {
+  background-color: #3a4e6a;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    flex-direction: column;
+  }
+
+  .right-column {
+    width: 100%;
+  }
+
+  .card-list {
+    justify-content: center;
+  }
+}
