@@ -23,34 +23,56 @@
 /* Main menu */
 .nav-menu {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.8rem;
   align-items: center;
+  
 }
 
 .nav-menu a {
   text-decoration: none;
   color: white;
-  font-weight: 500;
+  font-weight: 550;
   transition: color 0.3s ease;
 }
 
 .nav-menu a.active {
-  color: #81817d; 
-  border-bottom: 2px solid #81807e;
+  color: #fffffc; 
+  border-bottom: 2px solid #e8e8e6;
 }
-
 .btn,
 .logout-btn {
-  background: white; 
-  color: #526D82;
-  padding: 0.4rem 1rem;
+  background: #526D82;
+  color: white;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
   border: none;
   text-decoration: none;
   cursor: pointer;
   font-weight: 500;
   margin-left: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+.btn:hover,
+.logout-btn:hover {
+  background: #7996ad; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active,
+.logout-btn:active {
+  background: #445566; 
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:focus,
+.logout-btn:focus {
+  outline: 2px solid #c3d0db;
+  outline-offset: 2px;
+}
+
 
 .avatar {
   width: 32px;
